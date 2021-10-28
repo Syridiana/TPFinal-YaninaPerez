@@ -27,8 +27,11 @@ export class SignUpFormComponent implements OnInit {
       edad:[false, [Validators.required, Validators.min(0), Validators.max(120)]],
       dni :[false, [Validators.required, Validators.min(1), Validators.max(10000000)]],
       mail:['', [Validators.required, Validators.email]],
+      os:['', ],
+      image2:['', ],
       password:['', [Validators.required, Validators.minLength(6)]],
       image1:['', Validators.required],
+      especialidad: ['', ]
     });
 
    }
@@ -36,6 +39,7 @@ export class SignUpFormComponent implements OnInit {
    aceptarForm(){
      this.authService.SignUp(this.formulario.value.mail, this.formulario.value.password);
      if(this.registerType == "Paciente"){
+       console.log(this.formulario.value.os)
       this.DBService.addPaciente(
         this.formulario.value.nombre, 
         this.formulario.value.apellido, 

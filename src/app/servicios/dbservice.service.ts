@@ -65,7 +65,6 @@ export class DBService {
         photoUrl: image1,
         photoUrl2: image2
       };
-
       return await this.pacientesCollection.add(paciente);
     } catch (error:any) {
       throw new Error(error.message);

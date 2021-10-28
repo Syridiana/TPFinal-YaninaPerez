@@ -56,7 +56,7 @@
                   <br>
                   <div class="col-sm-6" *ngIf="registerType == 'Paciente'">
                       <label for="os" class="form-label">Obra Social</label>
-                      <input type="text" class="form-control" id="os" placeholder="" value="" required>
+                      <input formControlName="os" type="text" class="form-control" id="os" placeholder="" value="" required>
                     </div>
         
                     <div class="col-sm-6">
@@ -84,15 +84,12 @@
                       <br>
                       <br>
                       <div class="col-md-5" *ngIf="registerType == 'Especialista'">
-                        <label for="country" class="form-label">Especialidad</label>
-                        <select class="form-select" id="country" required>
+                        <label for="especialidad" class="form-label">Especialidad</label>
+                        <select formControlName="especialidad" class="form-select" id="especialidad" required>
                           <option value="">Elegir</option>
                           <option>Oftalmología</option>
                           <option>Agregar nueva</option>
                         </select>
-                        <div class="invalid-feedback">
-                          Please select a valid country.
-                        </div>
                       </div>
                       
                 <div class="col-12">
@@ -112,7 +109,7 @@
           <div class="col-12" *ngIf="registerType == 'Paciente'">
             <label for="imagen2" class="form-label">Imagen 2</label>
             <div class="input-group has-validation">
-              <input type="text" class="form-control" id="imagen2" placeholder="Link Imagen 2" required>
+              <input formControlName="image2" type="text" class="form-control" id="imagen2" placeholder="Link Imagen 2" required>
             </div>
           </div>
 
