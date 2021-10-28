@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;700;900&family=Vollkorn:wght@400;500;700;900&display=swap');
+
+*{
+    text-align: center; 
+}
+
+
+
+body{
+    font-family: "Raleway";
+}
+
+
+
+#mainSection{
+    position: absolute;
+    left: 7%;
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+h1{
+    font-family: "Vollkorn";
+    font-weight: 700;
+    font-size: 40px;
+    color:#2E1284;
+}
+
+#logout{
+    color:salmon;
+    cursor: pointer;
+}
+
+.site-header{
+    background-color:rgba(31, 39, 50, 0.9);
+    height: 70px;
+}
+
+
+.buttonNav{
+    text-decoration: none;
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 17px;
+    padding: 0 35px;
+    margin-top: 9px;
+    letter-spacing: 0.05em;
+    color:#66FCF1;
+}
+
+
+.buttonNav:hover{
+    color:#C5C6C8
+}
+
+.st0{
+    fill: #66FCF1;
+}
+
+.st0:hover{
+    fill: #C5C6C8;
+}
+
+#logo{
+    margin-top: 5px;
+}

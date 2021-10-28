@@ -1,0 +1,139 @@
+<body class="bg-light" *ngIf='registerType'>
+        
+    <div class="container">
+      <main>
+        <div class="py-5 text-center">
+          <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+          <h2>Registrar {{registerType}}</h2>
+        </div>
+
+        <div class="row g-5">
+
+          <div class="col-md-15 col-lg-15">
+            <form class="needs-validation" [formGroup]="formulario" (ngSubmit)="aceptarForm()">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="" value="" required>
+                  <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('nombre')?.hasError('required') &&
+                  formulario.get('nombre')?.touched">
+                    Nombre is required.
+                  </div>
+                </div>
+    
+                <div class="col-sm-6">
+                  <label for="apellido" class="form-label">Apellido</label>
+                  <input formControlName="apellido" type="text" class="form-control" id="apellido" placeholder="" value="" required>
+                  <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('apellido')?.hasError('required') &&
+                  formulario.get('apellido')?.touched">
+                    Apellido is required.
+                  </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="col-sm-6">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input formControlName="edad"  type="number" class="form-control" id="edad" placeholder="" value="" required>
+                    <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('edad')?.invalid &&
+                    formulario.get('edad')?.touched">
+                      Edad must be an acceptable value.
+                    </div>
+                  </div>
+      
+                  <div class="col-sm-6">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input formControlName="dni"  type="number" class="form-control" id="dni" placeholder="" value="" required>
+                    <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('dni')?.invalid &&
+                    formulario.get('dni')?.touched">
+                      DNI must be an acceptable value.
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <div class="col-sm-6" *ngIf="registerType == 'Paciente'">
+                      <label for="os" class="form-label">Obra Social</label>
+                      <input type="text" class="form-control" id="os" placeholder="" value="" required>
+                    </div>
+        
+                    <div class="col-sm-6">
+                      <label for="mail" class="form-label">Mail</label>
+                      <input formControlName="mail" type="email" class="form-control" id="mail" placeholder="" value="" required>
+                      <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('mail')?.invalid &&
+                      formulario.get('mail')?.touched">
+                        Mail need an acceptable value.
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col-sm-6">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input formControlName="password"  type="text" class="form-control" id="password" placeholder="" value="" required>
+                        <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('password')?.invalid &&
+                        formulario.get('password')?.touched">
+                          Password need to be at least 6 characters long.
+                        </div>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <div class="col-md-5" *ngIf="registerType == 'Especialista'">
+                        <label for="country" class="form-label">Especialidad</label>
+                        <select class="form-select" id="country" required>
+                          <option value="">Elegir</option>
+                          <option>Oftalmología</option>
+                          <option>Agregar nueva</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          Please select a valid country.
+                        </div>
+                      </div>
+                      
+                <div class="col-12">
+                  <label for="imagen1" class="form-label">Imagen 1</label>
+                  <div class="input-group has-validation">
+                    <input formControlName="image1"  type="text" class="form-control" id="imagen1" placeholder="Link Imagen 1" required>
+                  </div>
+                  <div class="invalid-feedback" class="form-text" *ngIf="formulario.get('image1')?.hasError('required') &&
+                  formulario.get('image1')?.touched">
+                    Imagen is required.
+                  </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+          <div class="col-12" *ngIf="registerType == 'Paciente'">
+            <label for="imagen2" class="form-label">Imagen 2</label>
+            <div class="input-group has-validation">
+              <input type="text" class="form-control" id="imagen2" placeholder="Link Imagen 2" required>
+            </div>
+          </div>
+
+              </div>
+    
+
+
+    
+              <hr class="my-4">
+    
+              <button class="w-100 btn btn-primary btn-lg" type="submit">Registrar {{registerType}}</button>
+            </form>
+          </div>
+        </div>
+ 
+      </main>
+    
+
+    </div>
+    
+    
+
+      </body>
+

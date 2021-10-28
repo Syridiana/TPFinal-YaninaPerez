@@ -1,0 +1,26 @@
+
+
+<body class="text-center">
+    
+    <main class="form-signin">
+    
+        <h5>Página de Registro</h5>
+        <br>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" 
+        (click)="cambiarTipoSeleccionado('Especialista')">Registrar Especialista</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" 
+        (click)="cambiarTipoSeleccionado('Paciente')">Registrar Paciente</button>
+    </main>
+    
+
+    
+
+        
+      </body>
+
+      <app-sign-up-form [registerType] = "tipoSeleccionado"></app-sign-up-form>
