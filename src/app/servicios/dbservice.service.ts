@@ -20,10 +20,12 @@ export class DBService {
 
   private pacientesCollection: AngularFirestoreCollection<PacienteI>;
   private nameCollectionDB_2 = 'pacientes';
+  
 
   public currentUser!: User | null;
   public listaPacientes: PacienteI[] = [];
   public listaEspecialistas: EspecialistaI[] = [];
+  public usuarioType = "";
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.especialistasCollection = afs.collection<EspecialistaI>(
@@ -61,7 +63,7 @@ export class DBService {
         edad: edad,
         obrasocial: os,
         dni: dni,
-        mail: mail,
+        email: mail,
         photoUrl: image1,
         photoUrl2: image2
       };
@@ -81,10 +83,10 @@ export class DBService {
         edad: edad,
         especialidad: especialidad,
         dni: dni,
-        mail: mail,
+        email: mail,
         photoUrl: image1
       };
-
+    
       return await this.especialistasCollection.add(especialista);
     } catch (error:any) {
       throw new Error(error.message);
@@ -112,27 +114,29 @@ export class DBService {
   } */
 
 
-/*   async updatePuntaje(puntaje: number) {
+  async getUserType() {
     try {
-
       if(this.currentUser){
-        let nuevoPuntaje=0;
-        const docs = this.afs.collection<UserI>(
+        const docs = this.afs.collection<PacienteI>(
           this.nameCollectionDB_2).ref.where('email', '==', this.currentUser.email).get();
           (await docs).forEach((doc:any)=>{
-            console.log(doc.data().puntaje);
-            this.usuarioId = doc.id;
-            nuevoPuntaje = doc.data().puntaje + puntaje;
+            console.log(doc);
+            this.usuarioType = "paciente";
           });
-          await this.afs.collection<UserI>(
-            this.nameCollectionDB_2).doc(`/${this.usuarioId}`).update({puntaje: nuevoPuntaje});
-      }
 
+          const docs2 = this.afs.collection<EspecialistaI>(
+            this.nameCollectionDB).ref.where('email', '==', this.currentUser.email).get();
+            (await docs).forEach((doc:any)=>{
+              console.log(doc);
+              this.usuarioType = "especialista";
+            });
+      }
+      return this.usuarioType;
  
     } catch (error:any) {
       throw new Error(error.message);
     }
-  } */
+  }
 
   
 

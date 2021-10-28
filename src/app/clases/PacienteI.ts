@@ -5,7 +5,7 @@ export interface PacienteI {
     edad: number | null | undefined;
     dni: number | null | undefined;
     obrasocial: string | null | undefined;
-    mail: string | null | undefined;
+    email: string | null | undefined;
     photoUrl: string | null | undefined;
     photoUrl2: string | null | undefined;
   }

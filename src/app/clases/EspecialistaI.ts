@@ -5,6 +5,6 @@ export interface EspecialistaI {
     edad: number | null | undefined;
     dni: number | null | undefined;
     especialidad: string | null | undefined;
-    mail: string | null | undefined;
+    email: string | null | undefined;
     photoUrl: string | null | undefined;
   }
