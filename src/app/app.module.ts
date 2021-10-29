@@ -17,6 +17,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
 import {  ReactiveFormsModule } from '@angular/forms';
+import { MisturnosComponent } from './pages/misturnos/misturnos.component';
 
 
 
@@ -28,7 +29,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     SignUpComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    MisturnosComponent
     
   ],
   imports: [

@@ -15,7 +15,8 @@
         <a class="py-2 d-none d-md-inline-block buttonNav" routerLink="/home">Home</a>
         <a class="py-2 d-none d-md-inline-block buttonNav" routerLink="/quien-soy">Quien soy</a>
         <a class="py-2 d-none d-md-inline-block buttonNav" routerLink="/ej1">Ejercicio 1</a>
-        <a class="py-2 d-none d-md-inline-block buttonNav" routerLink="/error">{{tipoUsuario}}</a>
+        <a class="py-2 d-none d-md-inline-block buttonNav" routerLink="/misturnos" *ngIf="tipoUsuario == 'paciente'">Mis Turnos</a>
+        <p style="color: white">Tipo de usuario: {{tipoUsuario}}</p>
         <!-- <a class="py-2 d-none d-md-inline-block buttonNav" *ngIf="!currentUser" routerLink="/login">Login/Signup</a> -->
     <!--     <a class="py-2 d-none d-md-inline-block buttonNav" id="logout" *ngIf="currentUser">Logout</a> -->
 <!--         <p class="py-2 d-none d-md-inline-block buttonNav" *ngIf="currentUser">Bienvenida/o: {{userDisplayName}}</p> -->
