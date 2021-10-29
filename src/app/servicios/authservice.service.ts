@@ -100,6 +100,7 @@ export class AuthenticationService {
     this.angularFireAuth
       .signOut();
     this.email = "";
+    sessionStorage.setItem('tipo', '');
 
     Swal.fire({
       icon: 'warning',

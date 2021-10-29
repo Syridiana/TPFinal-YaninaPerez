@@ -39,7 +39,6 @@ export class SignUpFormComponent implements OnInit {
    aceptarForm(){
      this.authService.SignUp(this.formulario.value.mail, this.formulario.value.password);
      if(this.registerType == "Paciente"){
-       console.log(this.formulario.value.os)
       this.DBService.addPaciente(
         this.formulario.value.nombre, 
         this.formulario.value.apellido, 
@@ -49,6 +48,7 @@ export class SignUpFormComponent implements OnInit {
         this.formulario.value.mail,
         this.formulario.value.image1,
         this.formulario.value.image2 );
+        sessionStorage.setItem('tipo', 'paciente');
      } else 
      {
       this.DBService.addEspecialista(
@@ -60,6 +60,7 @@ export class SignUpFormComponent implements OnInit {
         this.formulario.value.mail,
         this.formulario.value.image1
        );
+       sessionStorage.setItem('tipo', 'especialista');
      }
 
   }

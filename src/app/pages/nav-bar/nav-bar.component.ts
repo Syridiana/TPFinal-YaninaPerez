@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 /* import { AuthenticationService } from 'src/app/servicios/auth.service'; */
 /* import { UserI } from 'src/app/clases/UserI'; */
 import { AngularFireAuth } from "@angular/fire/auth";
-/* import { DBService } from '../../servicios/db.service'; */
+import { DBService } from 'src/app/servicios/dbservice.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,10 +12,15 @@ import { AngularFireAuth } from "@angular/fire/auth";
 export class NavBarComponent implements OnInit {
   userDisplayName : any;
 /*   public currentUser!: UserI | null; */
-  public puntajeUsuario:any
+  public tipoUsuario:any;
 
-  constructor(/* public authService: AuthenticationService ,*/  private angularFireAuth: AngularFireAuth, /* private DBService: DBService */) {
+  constructor(/* public authService: AuthenticationService ,*/  private angularFireAuth: AngularFireAuth, private DBService: DBService) {
     this.angularFireAuth.onAuthStateChanged((user) => {
+      this.DBService.getUserType().then( data => {
+        this.tipoUsuario = sessionStorage.tipo;
+      })
+      
+
 /*       this.currentUser = user;
       this.userDisplayName = this.currentUser?.email; */
     });

@@ -10,31 +10,28 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { EspecialistaI } from '../clases/EspecialistaI';
 import { PacienteI } from '../clases/PacienteI';
+import { UserI } from '../clases/UserI';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DBService {
-  private especialistasCollection: AngularFirestoreCollection<EspecialistaI>;
-  private nameCollectionDB = 'especialistas';
+  private usersCollection: AngularFirestoreCollection<UserI>;
+  private nameCollectionDB = 'users';
 
-  private pacientesCollection: AngularFirestoreCollection<PacienteI>;
-  private nameCollectionDB_2 = 'pacientes';
+
   
 
   public currentUser!: User | null;
-  public listaPacientes: PacienteI[] = [];
-  public listaEspecialistas: EspecialistaI[] = [];
+
   public usuarioType = "";
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
-    this.especialistasCollection = afs.collection<EspecialistaI>(
+    this.usersCollection = afs.collection<UserI>(
       this.nameCollectionDB
     );
 
-    this.pacientesCollection = afs.collection<PacienteI>(
-      this.nameCollectionDB_2
-    );
+
 
     this.afAuth.onAuthStateChanged((user) => {
       this.currentUser = user;
@@ -44,19 +41,19 @@ export class DBService {
   }
 
 
-  loadAllEspecialistas() {
+/*   loadAllEspecialistas() {
     return this.especialistasCollection.valueChanges() as Observable<EspecialistaI[]>
   }
 
   loadAllPacientes() {
     return this.pacientesCollection.valueChanges() as Observable<PacienteI[]>
   }
-
+ */
 
   async addPaciente(nombre: string, apellido: string, edad:number, dni:number, os: string,
     mail:string, image1:string, image2:string) {
     try {
-      const paciente: PacienteI = {
+      const paciente: UserI = {
         uid: this.currentUser?.uid,
         nombre: nombre,
         apellido: apellido,
@@ -65,9 +62,11 @@ export class DBService {
         dni: dni,
         email: mail,
         photoUrl: image1,
-        photoUrl2: image2
+        photoUrl2: image2,
+        especialidad: '-',
+        tipo: 'paciente'
       };
-      return await this.pacientesCollection.add(paciente);
+      return await this.usersCollection.add(paciente);
     } catch (error:any) {
       throw new Error(error.message);
     }
@@ -76,7 +75,7 @@ export class DBService {
   async addEspecialista(nombre: string, apellido: string, edad:number, dni:number, especialidad: string,
     mail:string, image1:string) {
     try {
-      const especialista: EspecialistaI = {
+      const especialista: UserI = {
         uid: this.currentUser?.uid,
         nombre: nombre,
         apellido: apellido,
@@ -84,10 +83,13 @@ export class DBService {
         especialidad: especialidad,
         dni: dni,
         email: mail,
-        photoUrl: image1
+        photoUrl: image1,
+        obrasocial: '-',
+        tipo: "especialista",
+        photoUrl2: '-'
       };
     
-      return await this.especialistasCollection.add(especialista);
+      return await this.usersCollection.add(especialista);
     } catch (error:any) {
       throw new Error(error.message);
     }
@@ -116,22 +118,16 @@ export class DBService {
 
   async getUserType() {
     try {
-      if(this.currentUser){
-        const docs = this.afs.collection<PacienteI>(
-          this.nameCollectionDB_2).ref.where('email', '==', this.currentUser.email).get();
-          (await docs).forEach((doc:any)=>{
-            console.log(doc);
-            this.usuarioType = "paciente";
-          });
 
-          const docs2 = this.afs.collection<EspecialistaI>(
-            this.nameCollectionDB).ref.where('email', '==', this.currentUser.email).get();
-            (await docs).forEach((doc:any)=>{
-              console.log(doc);
-              this.usuarioType = "especialista";
-            });
+      if(this.currentUser){        
+        const docs = this.afs.collection<UserI>(
+          this.nameCollectionDB).ref.where('email', '==', this.currentUser.email).get();
+          (await docs).forEach((doc:any)=>{
+            sessionStorage.setItem('tipo', doc.data().tipo); 
+            return doc.data();
+          });
       }
-      return this.usuarioType;
+
  
     } catch (error:any) {
       throw new Error(error.message);
